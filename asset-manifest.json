@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/china/static/css/main.80f8b105.css",
+    "main.js": "/china/static/js/main.3179041c.js",
+    "index.html": "/china/index.html",
+    "main.80f8b105.css.map": "/china/static/css/main.80f8b105.css.map",
+    "main.3179041c.js.map": "/china/static/js/main.3179041c.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.80f8b105.css",
+    "static/js/main.3179041c.js"
+  ]
+}
