@@ -1,25 +1,39 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {
+  ComposableMap,
+  Geographies,
+  Geography,
+  ZoomableGroup,
+  Marker,
+  Annotation
+} from "react-simple-maps";
+import {geoMercator} from "d3-geo"
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+import './App.css';
+const geoUrl = "https://raw.githubusercontent.com/longwosion/geojson-map-china/master/china.json"
+const projection = (width: number, height: number) => geoMercator()
+    .center([107, 31])
+    .scale(400)
+    .translate([width/2, height/2]);
+
+
+const App = () => {
+  return ( <ComposableMap projection={projection(850, 500)}>
+      <ZoomableGroup zoom={1}>
+        <Geographies geography={geoUrl} >
+          {({ geographies }) => (
+              geographies.map(geo => (
+                  <Geography
+                      key={geo.rsmKey}
+                      stroke="#FFF"
+                      geography={geo}
+                      fill="#DDD"
+                  />
+                ))
+              )}
+        </Geographies>
+      </ZoomableGroup>
+      </ComposableMap>
   );
 }
 
