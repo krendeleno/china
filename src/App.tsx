@@ -1,39 +1,24 @@
-import React from 'react';
-import {
-  ComposableMap,
-  Geographies,
-  Geography,
-  ZoomableGroup,
-  Marker,
-  Annotation
-} from "react-simple-maps";
-import {geoMercator} from "d3-geo"
+import React, {useState} from 'react';
+
+import ReactTooltip from "react-tooltip";
 
 import './App.css';
-const geoUrl = "https://raw.githubusercontent.com/longwosion/geojson-map-china/master/china.json"
-const projection = (width: number, height: number) => geoMercator()
-    .center([107, 31])
-    .scale(400)
-    .translate([width/2, height/2]);
-
+import GeoMap from "src/components/GeoMap/GeoMap";
+import SideBar from "src/components/SideBar/SideBar";
 
 const App = () => {
-  return ( <ComposableMap projection={projection(850, 500)}>
-      <ZoomableGroup zoom={1}>
-        <Geographies geography={geoUrl} >
-          {({ geographies }) => (
-              geographies.map(geo => (
-                  <Geography
-                      key={geo.rsmKey}
-                      stroke="#FFF"
-                      geography={geo}
-                      fill="#DDD"
-                  />
-                ))
-              )}
-        </Geographies>
-      </ZoomableGroup>
-      </ComposableMap>
+    const [isOpen, setOpen] = useState(false);
+    const [currentPoint, setCurrentPoint] = useState({name: ""})
+    const stateChangeHandler = (newState) => setOpen(newState.isOpen)
+  return (
+      <div id="outer-container">
+         <SideBar isOpen={isOpen} stateChangeHandler={stateChangeHandler} currentPoint={currentPoint}/>
+          <div id="page-wrap">
+              <GeoMap setOpen={setOpen} setCurrentPoint={setCurrentPoint}/>
+              <ReactTooltip effect="solid" />
+          </div>
+
+      </div>
   );
 }
 

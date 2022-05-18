@@ -1,10 +1,26 @@
 body {
     margin: 0;
     padding: 0 1.5rem;
+}
+
+.bm-item-list {
+    height: auto !important;
+}
+
+html {
     overflow-y: hidden;
 }
 
 svg {
     display: inline-block;
     vertical-align: middle;
+}
+
+.bm-burger-button {
+    position: fixed;
+    width: 36px;
+    height: 30px;
+    left: 36px;
+    top: 36px;
+    background: black;
 }
