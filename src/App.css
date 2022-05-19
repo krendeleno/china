@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;600&display=swap');
+
 body {
     margin: 0;
     padding: 0 1.5rem;
@@ -23,4 +25,13 @@ svg {
     left: 36px;
     top: 36px;
     background: black;
+}
+
+span {
+    font-family: Montserrat;
+}
+
+.bm-menu {
+    background: white;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }

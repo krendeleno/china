@@ -1,0 +1,14 @@
+.SideBar-ReviewsBlock {
+    display: flex !important;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.SideBar-Description {
+    margin-bottom: 50px;
+}
+
+.SideBar-Name {
+    font-size: 2em;
+    margin: 50px 0 15px;
+}

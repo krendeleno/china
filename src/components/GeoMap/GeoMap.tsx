@@ -5,20 +5,25 @@ import {
     Geography,
     ZoomableGroup,
     Marker,
-    Annotation
 } from "react-simple-maps";
 import {geoMercator} from "d3-geo"
 
 const geoUrl = "https://raw.githubusercontent.com/longwosion/geojson-map-china/master/china.json"
 const markers = [
-    { name: "Тест", coordinates: [32.436624, 113.790093], offset: -10 }
+    { name: "Тест", coordinates: [32.436624, 113.790093], offset: -10, category: 1 },
+    { name: "Тест 1", coordinates: [35.70076987466967, 93.86151077192345], offset: -10, category: 1 },
+    { name: "Тест 2", coordinates: [25.35267852769176, 110.34100172677681], offset: -10, category: 2 },
+    { name: "Тест 3", coordinates: [39.62121301077225, 111.92303285844274], offset: -10, category: 2 },
+    { name: "Тест 4", coordinates: [36.437497076669096, 93.29022175215516], offset: -10, category: 1 },
+    { name: "Тест 5", coordinates: [40.160692431513624, 103.83709596326133], offset: -10, category: 3 },
+    { name: "Тест 6", coordinates: [24.024734624188653, 105.77068956863079], offset: -10, category: 3 }
 ]
 const projection = (width: number, height: number) => geoMercator()
     .center([107, 31])
     .scale(400)
     .translate([width/2, height/2]);
 
-const GeoMap = memo(({setOpen, setCurrentPoint}) => {
+export const GeoMap = memo(({setOpen, setCurrentPoint, currentCategory}: any) => {
     return (
         <ComposableMap projection={projection(850, 500)}>
             <ZoomableGroup zoom={1}>
@@ -34,7 +39,7 @@ const GeoMap = memo(({setOpen, setCurrentPoint}) => {
                         ))
                     )}
                 </Geographies>
-                {markers.map(({ name, coordinates, offset }) => (
+                {markers.filter(({category}) => currentCategory !== 4 ? category === currentCategory : true).map(({ name, coordinates, offset }) => (
                     <Marker key={name} coordinates={[...coordinates].reverse()}
                             onClick={() => {
                                 setOpen(true);
@@ -44,12 +49,10 @@ const GeoMap = memo(({setOpen, setCurrentPoint}) => {
 
                             }}
                     >
-                        <circle r={5} fill="#F00" stroke="#fff" data-tip={name}/>
+                        <circle r={5} fill="#F00" stroke="#fff" data-tip={name} style={{cursor: "pointer"}}/>
                     </Marker>
                 ))};
             </ZoomableGroup>
         </ComposableMap>
     )
 })
-
-export default GeoMap;

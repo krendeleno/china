@@ -1,0 +1,24 @@
+.Categories-Category {
+    background: coral;
+    color: white;
+    font-weight: 600;
+    transition: .2s all linear;
+    cursor: pointer;
+    border-radius: 5px;
+    padding: 5px;
+    font-size: 1.2em;
+}
+
+.Categories-Current {
+    background: brown;
+}
+
+.Categories-Container {
+    position: fixed;
+    top: 20px;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+}

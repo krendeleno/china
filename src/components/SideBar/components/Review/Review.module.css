@@ -1,0 +1,10 @@
+.Review {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.Review-Author {
+    font-size: 0.8em;
+    font-weight: 600;
+}
