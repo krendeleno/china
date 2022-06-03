@@ -18,7 +18,7 @@ const App = () => {
           <div id="page-wrap">
               <Categories setCategory={setCategory} currentCategory={currentCategory}/>
               <GeoMap setOpen={setOpen} setCurrentPoint={setCurrentPoint} currentCategory={currentCategory}/>
-              <ReactTooltip effect="solid" />
+              <ReactTooltip effect="solid" bodyMode />
           </div>
 
       </div>

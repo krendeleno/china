@@ -6,9 +6,8 @@ import {
     ZoomableGroup,
     Marker,
 } from "react-simple-maps";
-import {geoMercator} from "d3-geo"
+import { ChinaData } from 'china-map-geojson';
 
-const geoUrl = "https://raw.githubusercontent.com/longwosion/geojson-map-china/master/china.json"
 const markers = [
     { name: "Тест", coordinates: [32.436624, 113.790093], offset: -10, category: 1 },
     { name: "Тест 1", coordinates: [35.70076987466967, 93.86151077192345], offset: -10, category: 1 },
@@ -18,16 +17,13 @@ const markers = [
     { name: "Тест 5", coordinates: [40.160692431513624, 103.83709596326133], offset: -10, category: 3 },
     { name: "Тест 6", coordinates: [24.024734624188653, 105.77068956863079], offset: -10, category: 3 }
 ]
-const projection = (width: number, height: number) => geoMercator()
-    .center([107, 31])
-    .scale(400)
-    .translate([width/2, height/2]);
 
 export const GeoMap = memo(({setOpen, setCurrentPoint, currentCategory}: any) => {
+
     return (
-        <ComposableMap projection={projection(850, 500)}>
+        <ComposableMap projection="geoMercator" projectionConfig={{ center: [107, 25], scale: 400 }}>
             <ZoomableGroup zoom={1}>
-                <Geographies geography={geoUrl} >
+                <Geographies geography={ChinaData} >
                     {({ geographies }) => (
                         geographies.map(geo => (
                             <Geography

@@ -25,7 +25,7 @@ export const SideBar = ({stateChangeHandler, isOpen, currentPoint}: any) => {
 
     return (
         <Menu customBurgerIcon={false}
-              pageWrapId={ "page-wrap" } outerContainerId={ "outer-container" } noOverlay isOpen={ isOpen }
+              pageWrapId={ "page-wrap" } outerContainerId={ "outer-container" } isOpen={ isOpen }
               onStateChange={stateChangeHandler}
         >
                 {currentPoint && <span className={styles['SideBar-Name']}>{currentPoint.name}</span>}
