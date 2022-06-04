@@ -2,7 +2,7 @@
 
 body {
     margin: 0;
-    padding: 0 1.5rem;
+    padding: 0;
 }
 
 .bm-item-list {
@@ -34,4 +34,7 @@ span {
 .bm-menu {
     background: white;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
