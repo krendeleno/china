@@ -11,8 +11,11 @@ export const Modal = ({ hideModal }: any) => {
   const [text, setText] = useState("");
 
   return createPortal(
-    <div className={styles["Modal"]}>
-      <div className={styles["Modal-Form"]}>
+    <div className={styles["Modal"]} onClick={hideModal}>
+      <div
+        className={styles["Modal-Form"]}
+        onClick={(e) => e.stopPropagation()}
+      >
         <input
           type="text"
           value={name}
