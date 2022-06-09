@@ -9,6 +9,45 @@
 }
 
 .SideBar-Name {
+    position: absolute;
+    background-color: white;
     font-size: 2em;
-    margin: 50px 0 15px;
+    padding: 14px;
+    border-radius: 8px;
+    top: 40px;
+    left: 45px;
+    max-width: 432px;
+}
+
+.SideBar-Cover {
+    height: 400px;
+    position: relative;
+    background-size: cover;
+}
+
+.SideBar-Description, .SideBar-Empty {
+    display: block;
+}
+
+.SideBar-Empty {
+    margin-top: 20px;
+    opacity: .5;
+}
+
+.SideBar-ReviewsBlockTitle {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.SideBar-Content {
+    margin: 30px 45px 0;
+}
+
+.SideBar-ReviewsTitle {
+    font-size: 1.5em;
+}
+
+.SideBar-ButtonText {
+
 }

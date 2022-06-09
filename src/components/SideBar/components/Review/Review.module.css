@@ -2,9 +2,10 @@
     display: flex;
     flex-direction: column;
     gap: 5px;
+    font-size: 1em;
 }
 
 .Review-Author {
     font-size: 0.8em;
-    font-weight: 600;
+    font-weight: 700;
 }

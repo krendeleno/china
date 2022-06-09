@@ -1,0 +1,24 @@
+.Button {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-radius: 6px;
+    font-weight: 700;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1em;
+    height: 36px;
+    background-color: transparent;
+}
+
+.Button_action {
+    background-color: #B0B0B0;
+    color: #FFFFFF;
+}
+
+.Button_clear {
+    color: #000;
+}
