@@ -14,51 +14,6 @@ import { colors } from "src/global/colors";
 import { Point } from "src/global/types";
 import { motion, AnimatePresence } from "framer-motion";
 
-const markers = [
-  {
-    name: "Тест",
-    coordinates: [32.436624, 113.790093],
-    offset: -10,
-    category: 1,
-  },
-  {
-    name: "Тест 1",
-    coordinates: [35.70076987466967, 93.86151077192345],
-    offset: -10,
-    category: 1,
-  },
-  {
-    name: "Тест 2",
-    coordinates: [25.35267852769176, 110.34100172677681],
-    offset: -10,
-    category: 2,
-  },
-  {
-    name: "Тест 3",
-    coordinates: [39.62121301077225, 111.92303285844274],
-    offset: -10,
-    category: 2,
-  },
-  {
-    name: "Тест 4",
-    coordinates: [36.437497076669096, 93.29022175215516],
-    offset: -10,
-    category: 1,
-  },
-  {
-    name: "Тест 5",
-    coordinates: [40.160692431513624, 103.83709596326133],
-    offset: -10,
-    category: 3,
-  },
-  {
-    name: "Тест 6",
-    coordinates: [24.024734624188653, 105.77068956863079],
-    offset: -10,
-    category: 3,
-  },
-];
-
 export const GeoMap = memo(
   ({ setOpen, setCurrentPoint, currentCategory }: any) => {
     const [isActive, setActive] = useState("");

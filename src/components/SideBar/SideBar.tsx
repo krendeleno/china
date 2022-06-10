@@ -44,13 +44,7 @@ export const SideBar = ({ stateChangeHandler, isOpen, currentPoint }: any) => {
       onStateChange={stateChangeHandler}
       width={550}
     >
-      {!info && (
-        <TailSpin
-          color="#00BFFF"
-          height={80}
-          width={80}
-        />
-      )}
+      {!info && <TailSpin color="#00BFFF" height={80} width={80} />}
       {info && (
         <>
           <div
@@ -83,7 +77,7 @@ export const SideBar = ({ stateChangeHandler, isOpen, currentPoint }: any) => {
                   </span>
                 </Button>
               </div>
-              {info.comments.map(({ id, author, text }) => (
+              {[...info.comments].reverse().map(({ id, author, text }) => (
                 <Review key={id} id={id} author={author} text={text} />
               ))}
               {info.comments.length === 0 && (

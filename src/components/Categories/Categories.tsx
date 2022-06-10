@@ -4,6 +4,7 @@ import styles from "src/components/Categories/Categories.module.css";
 import { getCategories } from "src/api";
 import { colors } from "src/global/colors";
 import { Category } from "src/global/types";
+import { TailSpin } from "react-loader-spinner";
 
 const all: Category = { title: "Все", id: -1, color: "black" };
 
@@ -18,6 +19,9 @@ export const Categories = ({ setCategory, currentCategory }: any) => {
 
   return (
     <div className={styles["Categories-Container"]}>
+      {categories.length === 1 && (
+        <TailSpin color="#00BFFF" height={40} width={40} />
+      )}
       {categories.map(({ title, id, color }) => (
         <div
           style={
