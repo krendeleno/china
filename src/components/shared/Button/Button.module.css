@@ -12,6 +12,11 @@
     font-size: 1em;
     height: 36px;
     background-color: transparent;
+    transition: all .1s linear;
+}
+
+.Button:hover {
+    transform: scale(.95);
 }
 
 .Button_action {

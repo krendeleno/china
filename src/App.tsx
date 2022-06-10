@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import ReactTooltip from "react-tooltip";
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 
 import { GeoMap } from "src/components/GeoMap";
 import { SideBar } from "src/components/SideBar";
 import { Categories } from "src/components/Categories";
 
 import "./App.css";
-import { getCategories, getPointById } from "src/api";
 
 const App = () => {
   const [isOpen, setOpen] = useState(false);

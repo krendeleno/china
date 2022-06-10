@@ -6,6 +6,7 @@ import { Button } from "src/components/shared/Button";
 
 import styles from "src/components/SideBar/components/Modal/Modal.module.css";
 import { getPointById, reviewPoint } from "src/api";
+import { motion } from "framer-motion";
 
 export const Modal = ({ hideModal, currentPoint, setInfo }: any) => {
   const [author, setAuthor] = useState("");
@@ -20,9 +21,12 @@ export const Modal = ({ hideModal, currentPoint, setInfo }: any) => {
 
   return createPortal(
     <div className={styles["Modal"]} onClick={hideModal}>
-      <div
+      <motion.div
         className={styles["Modal-Form"]}
         onClick={(e) => e.stopPropagation()}
+        initial={{ scale: 0, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        exit={{ scale: 0, opacity: 0 }}
       >
         <input
           type="text"
@@ -47,7 +51,7 @@ export const Modal = ({ hideModal, currentPoint, setInfo }: any) => {
             <span>Отправить</span>
           </Button>
         </div>
-      </div>
+      </motion.div>
     </div>,
     document.getElementsByClassName("bm-overlay")[0] ||
       document.getElementById("root")!

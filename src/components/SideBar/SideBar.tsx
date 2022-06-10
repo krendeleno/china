@@ -9,11 +9,14 @@ import { backAPI, dislikePoint, getPointById, likePoint } from "src/api";
 import { PointInfo } from "src/global/types";
 import { ImageSlider } from "src/components/SideBar/components/ImageSlider";
 import { Like, Dislike } from "src/assets";
+import { AnimatePresence } from "framer-motion";
+import { TailSpin } from "react-loader-spinner";
 
 export const SideBar = ({ stateChangeHandler, isOpen, currentPoint }: any) => {
   const [info, setInfo] = useState<PointInfo>();
 
   useEffect(async () => {
+    setInfo(null);
     const res = await getPointById(currentPoint.id);
     setInfo(res);
   }, [currentPoint]);
@@ -41,6 +44,13 @@ export const SideBar = ({ stateChangeHandler, isOpen, currentPoint }: any) => {
       onStateChange={stateChangeHandler}
       width={550}
     >
+      {!info && (
+        <TailSpin
+          color="#00BFFF"
+          height={80}
+          width={80}
+        />
+      )}
       {info && (
         <>
           <div
@@ -85,13 +95,15 @@ export const SideBar = ({ stateChangeHandler, isOpen, currentPoint }: any) => {
           </div>
         </>
       )}
-      {isVisible && (
-        <Modal
-          hideModal={() => setVisible(false)}
-          currentPoint={currentPoint}
-          setInfo={setInfo}
-        />
-      )}
+      <AnimatePresence>
+        {isVisible && (
+          <Modal
+            hideModal={() => setVisible(false)}
+            currentPoint={currentPoint}
+            setInfo={setInfo}
+          />
+        )}
+      </AnimatePresence>
     </Menu>
   );
 };

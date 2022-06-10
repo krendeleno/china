@@ -12,6 +12,7 @@ import { Tooltip } from "src/components/shared/Tooltip";
 import { getPoints } from "src/api";
 import { colors } from "src/global/colors";
 import { Point } from "src/global/types";
+import { motion, AnimatePresence } from "framer-motion";
 
 const markers = [
   {
@@ -92,39 +93,49 @@ export const GeoMap = memo(
               currentCategory !== -1 ? category.id === currentCategory : true
             )
             .map(({ name, coordinates, offset, category, id }) => (
-              <Marker
-                key={name}
-                coordinates={[...coordinates].reverse()}
-                onClick={() => {
-                  setOpen(true);
-                  setCurrentPoint({ name, id });
-                }}
-                onMouseLeave={() => setActive("")}
-                onMouseEnter={() => setActive(name)}
-              >
-                {isActive === name && (
-                  <circle
-                    r={12}
-                    fillOpacity="37%"
+              <AnimatePresence>
+                <Marker
+                  key={name}
+                  coordinates={[...coordinates].reverse()}
+                  onClick={() => {
+                    setOpen(true);
+                    setCurrentPoint({ name, id });
+                  }}
+                  onMouseLeave={() => setActive("")}
+                  onMouseEnter={() => setActive(name)}
+                >
+                  <AnimatePresence>
+                    {isActive === name && (
+                      <motion.circle
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                        exit={{ scale: 0 }}
+                        r={12}
+                        fillOpacity="37%"
+                        fill={colors[category.color]}
+                      />
+                    )}
+                  </AnimatePresence>
+                  <motion.circle
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    exit={{ scale: 0 }}
+                    r={5}
                     fill={colors[category.color]}
+                    stroke="#fff"
+                    data-tip={ReactDOMServer.renderToString(
+                      <Tooltip
+                        name={name}
+                        categoryTitle={category.title}
+                        color={category.color}
+                      />
+                    )}
+                    strokeWidth="1px"
+                    style={{ cursor: "pointer" }}
+                    data-html={true}
                   />
-                )}
-                <circle
-                  r={5}
-                  fill={colors[category.color]}
-                  stroke="#fff"
-                  data-tip={ReactDOMServer.renderToString(
-                    <Tooltip
-                      name={name}
-                      categoryTitle={category.title}
-                      color={category.color}
-                    />
-                  )}
-                  strokeWidth="1px"
-                  style={{ cursor: "pointer" }}
-                  data-html={true}
-                />
-              </Marker>
+                </Marker>
+              </AnimatePresence>
             ))}
           ;
         </ZoomableGroup>
