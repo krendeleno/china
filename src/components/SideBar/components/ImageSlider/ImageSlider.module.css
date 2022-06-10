@@ -1,0 +1,14 @@
+.ImageSlider-Photo {
+    width: 219px;
+    height: 143px;
+    background-size: cover;
+    border-radius: 4px;
+}
+
+.ImageSlider {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+}

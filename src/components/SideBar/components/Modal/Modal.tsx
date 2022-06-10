@@ -5,10 +5,18 @@ import TextareaAutosize from "react-textarea-autosize";
 import { Button } from "src/components/shared/Button";
 
 import styles from "src/components/SideBar/components/Modal/Modal.module.css";
+import { getPointById, reviewPoint } from "src/api";
 
-export const Modal = ({ hideModal }: any) => {
-  const [name, setName] = useState("");
+export const Modal = ({ hideModal, currentPoint, setInfo }: any) => {
+  const [author, setAuthor] = useState("");
   const [text, setText] = useState("");
+
+  const sendReview = async () => {
+    await reviewPoint(currentPoint.id, { author, text });
+    const res = await getPointById(currentPoint.id);
+    setInfo(res);
+    hideModal();
+  };
 
   return createPortal(
     <div className={styles["Modal"]} onClick={hideModal}>
@@ -18,9 +26,9 @@ export const Modal = ({ hideModal }: any) => {
       >
         <input
           type="text"
-          value={name}
+          value={author}
           placeholder="Ваше имя"
-          onChange={(event) => setName(event.target.value)}
+          onChange={(event) => setAuthor(event.target.value)}
           className={styles["Modal-Input"]}
         />
         <TextareaAutosize
@@ -35,7 +43,7 @@ export const Modal = ({ hideModal }: any) => {
           <Button type="clear" onClick={hideModal}>
             <span>Отмена</span>
           </Button>
-          <Button type="action" onClick={() => console.log("f")}>
+          <Button type="action" onClick={sendReview}>
             <span>Отправить</span>
           </Button>
         </div>

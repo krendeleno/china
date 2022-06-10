@@ -1,4 +1,4 @@
-import React, { memo, useState } from "react";
+import React, { memo, useEffect, useState } from "react";
 import {
   ComposableMap,
   Geographies,
@@ -9,6 +9,9 @@ import {
 import { ChinaData } from "china-map-geojson";
 import ReactDOMServer from "react-dom/server";
 import { Tooltip } from "src/components/shared/Tooltip";
+import { getPoints } from "src/api";
+import { colors } from "src/global/colors";
+import { Point } from "src/global/types";
 
 const markers = [
   {
@@ -58,6 +61,13 @@ const markers = [
 export const GeoMap = memo(
   ({ setOpen, setCurrentPoint, currentCategory }: any) => {
     const [isActive, setActive] = useState("");
+    const [markers, setMarkers] = useState<Point[]>([]);
+
+    useEffect(async () => {
+      const res = await getPoints();
+      console.log(res);
+      setMarkers(res);
+    }, []);
 
     return (
       <ComposableMap
@@ -79,30 +89,38 @@ export const GeoMap = memo(
           </Geographies>
           {markers
             .filter(({ category }) =>
-              currentCategory !== 4 ? category === currentCategory : true
+              currentCategory !== -1 ? category.id === currentCategory : true
             )
-            .map(({ name, coordinates, offset }) => (
+            .map(({ name, coordinates, offset, category, id }) => (
               <Marker
                 key={name}
                 coordinates={[...coordinates].reverse()}
                 onClick={() => {
                   setOpen(true);
-                  setCurrentPoint({ name });
+                  setCurrentPoint({ name, id });
                 }}
                 onMouseLeave={() => setActive("")}
                 onMouseEnter={() => setActive(name)}
               >
                 {isActive === name && (
-                  <circle r={12} fill-opacity="37%" fill="#FFD542" />
+                  <circle
+                    r={12}
+                    fillOpacity="37%"
+                    fill={colors[category.color]}
+                  />
                 )}
                 <circle
                   r={5}
-                  fill="#FFD542"
+                  fill={colors[category.color]}
                   stroke="#fff"
                   data-tip={ReactDOMServer.renderToString(
-                    <Tooltip name={name} category={currentCategory} />
+                    <Tooltip
+                      name={name}
+                      categoryTitle={category.title}
+                      color={category.color}
+                    />
                   )}
-                  stroke-width="1px"
+                  strokeWidth="1px"
                   style={{ cursor: "pointer" }}
                   data-html={true}
                 />
